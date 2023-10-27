@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/food-cover-game/static/css/main.510a2230.css",
+    "main.js": "/food-cover-game/static/js/main.974e0405.js",
+    "static/js/787.a412fc11.chunk.js": "/food-cover-game/static/js/787.a412fc11.chunk.js",
+    "index.html": "/food-cover-game/index.html",
+    "main.510a2230.css.map": "/food-cover-game/static/css/main.510a2230.css.map",
+    "main.974e0405.js.map": "/food-cover-game/static/js/main.974e0405.js.map",
+    "787.a412fc11.chunk.js.map": "/food-cover-game/static/js/787.a412fc11.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.510a2230.css",
+    "static/js/main.974e0405.js"
+  ]
+}

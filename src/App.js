@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
+import ReactGA from 'react-ga';
 import './App.css';
+import useGaTracker from "./ga_track.js";
+
+ReactGA.initialize("G-82W8X559RX");
+
 
 const foodsForSaranWrap = [
   "Avocado",
@@ -73,7 +78,13 @@ const App = () => {
   const [gameStatus, setGameStatus] = useState("start");
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
 
+  const remaining = NUM_QUESTIONS - currentQuestion;
+
+  const gaTrack = useGaTracker("app");
+
   const handleAnswer = (answer) => {
+    gaTrack({ label: "handleAnswer", action: "clicked" });
+
     setSelectedAnswer(answer);
     const isAnswerCorrect = answer === shuffledQuestions[currentQuestion].answer;
     setIsCorrect(isAnswerCorrect);
@@ -92,6 +103,8 @@ const App = () => {
   };
 
   const startGame = () => {
+    gaTrack({ label: "startGame", action: "clicked" });
+
     const randomizedQuestions = shuffleArray(questions).slice(0, NUM_QUESTIONS);
     setShuffledQuestions(randomizedQuestions);
     setGameStatus("inProgress");
@@ -101,6 +114,8 @@ const App = () => {
   };
 
   const restartGame = () => {
+    gaTrack({ label: "restartGame", action: "clicked" });
+
     setGameStatus("start");
   };
 
@@ -125,11 +140,12 @@ const App = () => {
   return (
     <div className="App">
       <h1>Food Cover Game</h1>
-      <p>Would you cover {shuffledQuestions[currentQuestion].food} with:</p>
+      <p>Would you cover <span class="food">{shuffledQuestions[currentQuestion].food.toLowerCase()}</span> with:</p>
       <button onClick={() => handleAnswer('saran wrap')}>Saran Wrap</button>
       <button onClick={() => handleAnswer('tin foil')}>Tin Foil</button>
       <p>Your answer: {selectedAnswer}</p>
-      <p>Score: {score}</p>
+      <p>Score: <span class="num">{score}</span></p>
+      <p><span class="num">{remaining}</span> remaining</p>
       {showMessage && (
         <div className={`fade-message show ${isCorrect ? 'correct' : 'incorrect'}`}>
           {isCorrect ? 'Correct!' : 'Incorrect'}

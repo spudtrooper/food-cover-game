@@ -31,3 +31,12 @@ button {
   color: red;
   font-weight: bold;
 }
+
+.num {
+  font-weight: bold;
+}
+
+.food {
+  font-weight: bold;
+  font-style: italic;
+}
